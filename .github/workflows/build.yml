@@ -1,8 +1,6 @@
-ame: Build Image
+name: Build Image
 
 on:
-  repository_dispatch:
-  push:
   workflow_dispatch:
 
 jobs:
