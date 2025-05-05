@@ -16,3 +16,13 @@ jobs:
           GH_REPO: ${{ github.repository }}
           NUMBER: ${{ github.event.issue.number }}
           LABELS: triage
+  add-to-project:
+    name: Add issue to project
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/add-to-project@main
+        with:
+          # You can target a project in a different organization
+          # to the issue
+          project-url: https://github.com/orgs/artfulbodger/projects/1
+          github-token: ${{ secrets.PAT }}
