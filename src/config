@@ -7,7 +7,7 @@ export RPI_IMAGER_DESCRIPTION="A raspberrypi distro built with CustomPiOS"
 export RPI_IMAGER_WEBSITE="https://github.com/guysoft/CustomPiOS"
 export RPI_IMAGER_ICON="https://raw.githubusercontent.com/guysoft/CustomPiOS/devel/media/rpi-imager-CustomPiOS.png"
 
-export MODULES="base(network,mysql,gui,ianseopi)"
+export MODULES="base(network,mysql,apache2,gui,ianseopi)"
 
 # if set will enlarge root parition prior to build by provided size in MB
 export BASE_IMAGE_ENLARGEROOT=2000
