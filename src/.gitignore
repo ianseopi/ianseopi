@@ -1,0 +1,5 @@
+build.log
+.config.swp
+/workspace
+/config.local
+/image/*
