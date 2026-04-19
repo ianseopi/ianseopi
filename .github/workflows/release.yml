@@ -51,12 +51,12 @@ jobs:
 
       - name: Download Base Image (default)
         run: |
-          cd repository/src/image
+          cd /home/runner/work/ianseopi/ianseopi/repository/src/image
           wget -c --trust-server-names 'https://downloads.raspberrypi.org/raspios_lite_armhf_latest'
 
       - name: Update CustomPiOS Paths
         run: |
-          cd repository/src
+          cd /home/runner/work/ianseopi/ianseopi/repository/src
           ../../CustomPiOS/src/update-custompios-paths
 
       - name: Set release image version
