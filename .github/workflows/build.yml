@@ -25,3 +25,12 @@ jobs:
           path: repository
           submodules: true
           fetch-depth: 0
+      - name: Install GitVersion
+        uses: gittools/actions/gitversion/setup@v4.5.0
+        with:
+          versionSpec: "6.7.x"
+      - name: Use GitVersion
+        uses: gittools/actions/gitversion/execute@v4.5.0
+        id: gitversion
+        with:
+          targetPath: repository
