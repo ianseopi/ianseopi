@@ -34,6 +34,7 @@ jobs:
         id: gitversion
         with:
           targetPath: repository
-      - run: |
-          echo "majorMinorPatch (env.fullSemVer) : ${{ env.majorMinorPatch }}"
-          name: Display GitVersion variables (without prefix)
+      - name: Download Base Image (default)
+      run: |
+        cd repository/src/image
+        wget -c --trust-server-names 'https://downloads.raspberrypi.com/raspios_lite_arm64/images/raspios_lite_arm64-2026-04-21/2026-04-21-raspios-trixie-arm64-lite.img.xz'
