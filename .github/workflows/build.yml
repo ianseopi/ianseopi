@@ -34,3 +34,6 @@ jobs:
         id: gitversion
         with:
           targetPath: repository
+      - run: |
+          echo "FullSemVer (env.fullSemVer)            : ${{ env.fullSemVer }}"
+          name: Display GitVersion variables (without prefix)
