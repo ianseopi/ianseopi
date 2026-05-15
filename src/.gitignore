@@ -3,3 +3,4 @@ build.log
 /workspace
 /config.local
 /image/*
+!/image/.keep
