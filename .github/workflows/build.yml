@@ -10,7 +10,7 @@ jobs:
       - name: Install Dependencies
         run: |
           sudo apt update
-          sudo apt install gawk util-linux coreutils qemu-user-static p7zip-full git
+          sudo apt install gawk util-linux coreutils qemu-user-static p7zip-full git python3-git
       - name: Checkout CustomPiOS
         uses: actions/checkout@v6.0.1
         with:
