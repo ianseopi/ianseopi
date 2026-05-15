@@ -35,5 +35,5 @@ jobs:
         with:
           targetPath: repository
       - run: |
-          echo "FullSemVer (env.fullSemVer)            : ${{ env.fullSemVer }}"
+          echo "majorMinorPatch (env.fullSemVer) : ${{ env.majorMinorPatch }}"
           name: Display GitVersion variables (without prefix)
