@@ -76,11 +76,13 @@ jobs:
         id: copy
         run: |
           source repository/src/config
+          NOW=$(date +"%Y-%m-%d-%H%M")
           TAG=${DIST_VERSION}
-          IMAGE=IanseoPi $TAG
+          IMAGE=$NOW-ianseopi-$TAG
           cp repository/src/workspace/*.img $IMAGE.img
           echo "tag=$TAG" >> $GITHUB_OUTPUT
           echo "image=$IMAGE" >> $GITHUB_OUTPUT
+          echo "::set-output name=image::$IMAGE"
 
       - name: Zip Image
         run: |
@@ -110,30 +112,30 @@ jobs:
           body: "Release notes will be added manually."
           draft: false
 
-      - name: Upload image zip
-        uses: actions/upload-release-asset@v1
-        id: upload_zip
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ${{ steps.copy.outputs.image }}.zip
-          asset_name: ${{ steps.copy.outputs.image }}.zip
-          asset_content_type: application/zip
+      #- name: Upload image zip
+      #  uses: actions/upload-release-asset@v1
+      #  id: upload_zip
+      #  env:
+      #    GITHUB_TOKEN: ${{ github.token }}
+      #  with:
+      #    upload_url: ${{ steps.create_release.outputs.upload_url }}
+      #    asset_path: ${{ steps.copy.outputs.image }}.zip
+      #    asset_name: ${{ steps.copy.outputs.image }}.zip
+      #    asset_content_type: application/zip
 
-      - name: Generate Raspberry Pi Imager JSON
-        run: |
-          source repository/src/config
-          python3 CustomPiOS/src/custompios_core/make_rpi-imager-snipplet.py \
-            --rpi_imager_url "${{ steps.upload_zip.outputs.browser_download_url }}" \
-            -- default
+      #- name: Generate Raspberry Pi Imager JSON
+      #  run: |
+      #    source repository/src/config
+      #    python3 CustomPiOS/src/custompios_core/make_rpi-imager-snipplet.py \
+      #      --rpi_imager_url "${{ steps.upload_zip.outputs.browser_download_url }}" \
+      #      -- default
 
-      - name: Upload Raspberry Pi Imager JSON
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: repository/src/workspace/your-distro-rpi-imager-default.json
-          asset_name: your-distro-rpi-imager.json
-          asset_content_type: application/json
+      #- name: Upload Raspberry Pi Imager JSON
+      #  uses: actions/upload-release-asset@v1
+      #  env:
+      #    GITHUB_TOKEN: ${{ github.token }}
+      #  with:
+      #    upload_url: ${{ steps.create_release.outputs.upload_url }}
+      #    asset_path: repository/src/workspace/your-distro-rpi-imager-default.json
+      #    asset_name: your-distro-rpi-imager.json
+      #    asset_content_type: application/json
