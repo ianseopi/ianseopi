@@ -77,7 +77,7 @@ jobs:
         run: |
           source repository/src/config
           TAG=${DIST_VERSION}
-          IMAGE=your-distro-$TAG
+          IMAGE=IanseoPi $TAG
           cp repository/src/workspace/*.img $IMAGE.img
           echo "tag=$TAG" >> $GITHUB_OUTPUT
           echo "image=$IMAGE" >> $GITHUB_OUTPUT
