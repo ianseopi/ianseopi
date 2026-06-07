@@ -76,15 +76,15 @@ jobs:
         id: copy
         run: |
           source repository/src/config
-          NOW=$(date +"%Y-%m-%d-%H%M")
+          NOW=$(date +"%Y-%m-%d")
           TAG=${DIST_VERSION}
           IMAGE=$NOW-ianseopi-$TAG
           cp repository/src/workspace/*.img $IMAGE.img
           echo "tag=$TAG" >> $GITHUB_OUTPUT
           echo "image=$IMAGE" >> $GITHUB_OUTPUT
-          echo "::set-output name=image::$IMAGE"
 
       - name: Zip Image
+        id: zip_image
         run: |
           ZIPFILE=${{ steps.copy.outputs.image }}.zip
           zip $ZIPFILE ${{ steps.copy.outputs.image }}.img
@@ -100,14 +100,16 @@ jobs:
       #    prerelease: ${{ contains(steps.copy.outputs.tag, 'rc') ||
       #      contains(steps.copy.outputs.tag, 'unstable') }}
       #    tag_name: ${{ steps.copy.outputs.tag }}
-      #    release_name: YourDistro ${{ steps.copy.outputs.image }}
+      #    release_name: IanseoPi ${{ steps.copy.outputs.image }}
       #    body: "Release notes will be added manually."
       #  env:
       #    GITHUB_TOKEN: ${{ github.token }}
+      
       - name: Create release
+        id: create_release
         uses: ncipollo/release-action@v1
         with:
-          artifacts: ${{ steps.copy.outputs.zipfile }}
+          artifacts: ${{ steps.zip_image.outputs.zipfile }}
           tag: ${{ steps.copy.outputs.tag }}
           body: "Release notes will be added manually."
           draft: false
