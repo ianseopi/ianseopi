@@ -87,19 +87,28 @@ jobs:
           zip ${{ steps.copy.outputs.image }}.zip ${{ steps.copy.outputs.image }}.img
           echo "File size of ${{ steps.copy.outputs.image }}.zip"
           stat --printf="%s" ${{ steps.copy.outputs.image }}.zip
+          ZIP=${{ steps.copy.outputs.image }}.zip
+          echo "zip=$ZIP" >> $GITHUB_OUTPUT
 
+      #- name: Create release
+      #  uses: actions/create-release@v1
+      #  id: create_release
+      #  with:
+      #    draft: false
+      #    prerelease: ${{ contains(steps.copy.outputs.tag, 'rc') ||
+      #      contains(steps.copy.outputs.tag, 'unstable') }}
+      #    tag_name: ${{ steps.copy.outputs.tag }}
+      #    release_name: YourDistro ${{ steps.copy.outputs.image }}
+      #    body: "Release notes will be added manually."
+      #  env:
+      #    GITHUB_TOKEN: ${{ github.token }}
       - name: Create release
-        uses: actions/create-release@v1
-        id: create_release
+        uses: ncipollo/release-action@v1
         with:
-          draft: false
-          prerelease: ${{ contains(steps.copy.outputs.tag, 'rc') ||
-            contains(steps.copy.outputs.tag, 'unstable') }}
-          tag_name: ${{ steps.copy.outputs.tag }}
-          release_name: YourDistro ${{ steps.copy.outputs.image }}
+          artifacts: ${{ steps.copy.outputs.zip }}
+          tag: ${{ steps.copy.outputs.tag }}
           body: "Release notes will be added manually."
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
+          draft: false
 
       - name: Upload image zip
         uses: actions/upload-release-asset@v1
