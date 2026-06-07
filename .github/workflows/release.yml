@@ -16,7 +16,7 @@ jobs:
       - name: Install Dependencies
         run: |
           sudo apt update
-          sudo apt install coreutils p7zip-full qemu-user-static python3-git
+          sudo apt install coreutils p7zip-full qemu-user-static python3-git jq
 
       - name: Checkout CustomPiOS
         uses: actions/checkout@v6.0.1
@@ -127,13 +127,13 @@ jobs:
 
       - name: Generate Raspberry Pi Imager JSON
         run: |
-          echo "${{ steps.zip_image.outputs.zipfile }}"
-          echo "${{ steps.create_release.outputs.assets }} | jq ."
-          echo "${{ steps.create_release.outputs.assets }} | jq .${{ steps.zip_image.outputs.zipfile }}"
-       #   source repository/src/config
-       #   python3 CustomPiOS/src/custompios_core/make_rpi-imager-snipplet.py \
-       #     --rpi_imager_url "${{ steps.create_release.outputs.upload_url }}" \
-       #     -- default
+          # echo "${{ steps.zip_image.outputs.zipfile }}"
+          # echo "${{ steps.create_release.outputs.assets }} | jq ."
+          # echo "${{ steps.create_release.outputs.assets }} | jq .${{ steps.zip_image.outputs.zipfile }}"
+          source repository/src/config
+          python3 CustomPiOS/src/custompios_core/make_rpi-imager-snipplet.py \
+            --rpi_imager_url "${{ steps.create_release.outputs.assets }} | jq .${{ steps.zip_image.outputs.zipfile }}" \
+            -- default
 
       #- name: Upload Raspberry Pi Imager JSON
       #  uses: actions/upload-release-asset@v1
