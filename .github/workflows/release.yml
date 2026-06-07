@@ -86,11 +86,11 @@ jobs:
 
       - name: Zip Image
         run: |
-          zip ${{ steps.copy.outputs.image }}.zip ${{ steps.copy.outputs.image }}.img
+          ZIPFILE=${{ steps.copy.outputs.image }}.zip
+          zip $ZIPFILE ${{ steps.copy.outputs.image }}.img
           echo "File size of ${{ steps.copy.outputs.image }}.zip"
           stat --printf="%s" ${{ steps.copy.outputs.image }}.zip
-          ZIP=${{ steps.copy.outputs.image }}.zip
-          echo "zip=$ZIP" >> $GITHUB_OUTPUT
+          echo "zipfile=$ZIPFILE" >> $GITHUB_OUTPUT
 
       #- name: Create release
       #  uses: actions/create-release@v1
@@ -107,7 +107,7 @@ jobs:
       - name: Create release
         uses: ncipollo/release-action@v1
         with:
-          artifacts: ${{ steps.copy.outputs.zip }}
+          artifacts: ${{ steps.copy.outputs.zipfile }}
           tag: ${{ steps.copy.outputs.tag }}
           body: "Release notes will be added manually."
           draft: false
