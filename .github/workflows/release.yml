@@ -125,12 +125,13 @@ jobs:
       #    asset_name: ${{ steps.copy.outputs.image }}.zip
       #    asset_content_type: application/zip
 
-      #- name: Generate Raspberry Pi Imager JSON
-      #  run: |
-      #    source repository/src/config
-      #    python3 CustomPiOS/src/custompios_core/make_rpi-imager-snipplet.py \
-      #      --rpi_imager_url "${{ steps.upload_zip.outputs.browser_download_url }}" \
-      #      -- default
+      - name: Generate Raspberry Pi Imager JSON
+        run: |
+          echo "${{ steps.create_release.outputs.assets }}"
+          source repository/src/config
+          python3 CustomPiOS/src/custompios_core/make_rpi-imager-snipplet.py \
+            --rpi_imager_url "${{ steps.create_release.outputs.upload_url }}" \
+            -- default
 
       #- name: Upload Raspberry Pi Imager JSON
       #  uses: actions/upload-release-asset@v1
