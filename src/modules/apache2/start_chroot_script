@@ -17,12 +17,12 @@ apt-get update --allow-releaseinfo-change
 apt-get install -y apache2 mariadb-client php php-mysql php-gd php-curl php-mbstring php-mcrypt php-zip libapache2-mod-php
 apt autoremove --purge -y
 
-unpack /filesystem/home/pi /home/"${BASE_USER}" "${BASE_USER}"
-unpack /filesystem/home/root /root root
-unpack /filesystem/boot /boot
+#unpack /filesystem/home/pi /home/"${BASE_USER}" "${BASE_USER}"
+#unpack /filesystem/home/root /root root
+#unpack /filesystem/boot /boot
 
 echo "This is an example module, install and set up what you need here!"
 echo "$EXAMPLE_VAR"
 
 # Unpack root at the end, so files are modified before
-unpack /filesystem/root /
+#unpack /filesystem/root /
