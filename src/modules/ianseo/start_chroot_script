@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# ianseo
+# Downloads and Installs Ianseo competition software
+# Written by Rich Carpenter
+########
+
+# Source error handling, leave this in place
+set -x
+set -e
+
+source /common.sh
+install_cleanup_trap
+
+mkdir /var/www/ianseo
+curl -o /home/"${BASE_USER}"/Downloads/Ianseo_20250210.zip https://ianseo.net/Release/Ianseo_20250210.zip
+unzip /home/"${BASE_USER}"/Downloads/Ianseo_20250210.zip -d /var/www/ianseo
+
+# run ianseo installer here, if needed.  This is a placeholder for now.
