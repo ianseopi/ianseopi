@@ -1,6 +1,6 @@
 ianseopi
 ======
-![Markdown Logo](https://github.com/ianseopi/ianseopi/blob/main/media/rpi-imager-ianseopi.png)
+![ianseopi Logo](https://cdn.statically.io/gh/ianseopi/ianseopi@c01bf3fadbae81f5d7fdae78312ecdee952af9aa/media/rpi-imager-ianseopi.png)
 
 A [Raspberry Pi](http://www.raspberrypi.org/) distribution for the [ianseo Archery Scoring System](https://ianseo.net/).
 
