@@ -11,8 +11,9 @@ set -e
 source /common.sh
 install_cleanup_trap
 
-# set up webmin repo and signing key
-curl -s https://raw.githubusercontent.com/webmin/webmin/master/webmin-setup-repo.sh | bash
+curl -o /home/"${BASE_USER}"/Downloads/webmin-setup-repo.sh https://raw.githubusercontent.com/webmin/webmin/master/webmin-setup-repo.sh
+sh /home/"${BASE_USER}"/Downloads/webmin-setup-repo.sh -f
 apt-get install webmin --install-recommends
+rm /home/"${BASE_USER}"/Downloads/webmin-setup-repo.sh
 
-unpack /filesystem /
+unpack /filesystem/ /
