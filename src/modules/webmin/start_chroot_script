@@ -13,7 +13,7 @@ install_cleanup_trap
 
 curl -o /home/"${BASE_USER}"/Downloads/webmin-setup-repo.sh https://raw.githubusercontent.com/webmin/webmin/master/webmin-setup-repo.sh
 sh /home/"${BASE_USER}"/Downloads/webmin-setup-repo.sh -f
-apt-get install webmin --install-recommends
+apt-get install webmin --install-recommends -y
 rm /home/"${BASE_USER}"/Downloads/webmin-setup-repo.sh
 
 unpack /filesystem/ /
