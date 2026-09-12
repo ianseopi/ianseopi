@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# mysql
+# Written by Rich Carpenter
+########
+
+
+# Source error handling, leave this in place
+set -x
+set -e
+
+source /common.sh
+install_cleanup_trap
+
+# set up webmin repo and signing key
+curl -s https://raw.githubusercontent.com/webmin/webmin/master/webmin-setup-repo.sh | bash
+apt-get install webmin --install-recommends
+
+unpack /filesystem /
