@@ -117,7 +117,8 @@ jobs:
           body: "Release notes will be added manually."
           draft: false
 
-      - uses: hkusu/s3-upload-action@v2
+      - name: Upload image zip to S3
+        uses: hkusu/s3-upload-action@v2
         id: upload_to_s3 # specify some ID for use in subsequent steps
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
