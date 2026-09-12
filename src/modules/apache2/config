@@ -1,0 +1,5 @@
+###########################################################
+UPLOAD_MAX_FILESIZE=256M
+POST_MAX_SIZE=256M
+MEMORY_LIMIT=1024M
+MAX_EXECUTION_TIME=120

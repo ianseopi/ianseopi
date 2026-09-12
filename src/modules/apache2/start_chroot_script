@@ -20,17 +20,17 @@ apt autoremove --purge -y
 #Backup existing php.ini file
 inifile=$(php -i | grep "Loaded Configuration File" | sed 's/.*Loaded Configuration File => //g')
 
-cp $inifile /home/"${BASE_USER}"/Downloads
+cp $inifile /home/"${BASE_USER}"/Downloads/php.ini.bak
 
 # Update the php directivies required by ianseo
 # upload_max_filesize = 256M
 # post_max_size = 256M
 # memory_limit = 1024M
 
-sed -i 's,^upload_max_filesize =.*$,upload_max_filesize = 256M,' $inifile
-sed -i 's,^post_max_size =.*$,post_max_size = 256M,' $inifile
-sed -i 's,^memory_limit =.*$,memory_limit = 1024M,' $inifile
-sed -i 's,^max_execution_time =.*$,max_execution_time = 120,' $inifile
+sed -i 's,^upload_max_filesize =.*$,upload_max_filesize = "$UPLOAD_MAX_FILESIZE",' $inifile
+sed -i 's,^post_max_size =.*$,post_max_size = "$POST_MAX_SIZE",' $inifile
+sed -i 's,^memory_limit =.*$,memory_limit = "$MEMORY_LIMIT",' $inifile
+sed -i 's,^max_execution_time =.*$,max_execution_time = "$MAX_EXECUTION_TIME",' $inifile
 
 # add ianseo apahe2 config file
 unpack /filesystem /
