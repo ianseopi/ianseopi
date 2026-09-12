@@ -8,6 +8,8 @@ on:
       - "main"
   workflow_dispatch:
 
+run-name: Release ${{ github.ref_name }} by @${{ github.actor }}
+
 jobs:
   release:
     runs-on: ubuntu-24.04-arm
@@ -69,6 +71,7 @@ jobs:
 
       - name: Build Image
         run: |
+          echo "Building version ${{ github.ref_name }}"
           sudo modprobe loop
           cd repository/src
           sudo bash -x ./build_dist
