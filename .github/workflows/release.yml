@@ -117,6 +117,17 @@ jobs:
           body: "Release notes will be added manually."
           draft: false
 
+      - uses: hkusu/s3-upload-action@v2
+        id: upload_to_s3 # specify some ID for use in subsequent steps
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+          aws-bucket: ${{ secrets.AWS_BUCKET }}
+          file-path: ${{ steps.zip_image.outputs.zipfile }}
+          output-file-url: "true" # specify true
+
+
       #- name: Upload image zip
       #  uses: actions/upload-release-asset@v1
       #  id: upload_zip
