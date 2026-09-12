@@ -3,8 +3,6 @@ name: Release
 #  Depends on your release strategy, we went for release branches (e.g. release/1.0.0 or release/1.0.0-rc1)
 on:
   push:
-    branches:
-      - "release/*"
     tags:
       - "v*" # This triggers the workflow for tags starting with 'v'
   workflow_dispatch:
