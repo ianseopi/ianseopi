@@ -20,7 +20,7 @@ apt autoremove --purge -y
 #Backup existing php.ini file
 inifile=$(php -i | grep "Loaded Configuration File" | sed 's/.*Loaded Configuration File => //g')
 
-cp $inifile /home/"${BASE_USER}"/Downloads/php.ini.bak
+cp $inifile ~/phpini.bak
 
 # Update the php directivies required by ianseo
 # upload_max_filesize = 256M
