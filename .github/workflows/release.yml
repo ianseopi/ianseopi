@@ -127,7 +127,9 @@ jobs:
           aws-bucket: ${{ secrets.AWS_BUCKET }}
           file-path: ${{ steps.zip_image.outputs.zipfile }}
           output-file-url: "true" # specify true
-
+          destination-dir: "/"
+          content-type: application/zip
+          public: true
 
       #- name: Upload image zip
       #  uses: actions/upload-release-asset@v1
